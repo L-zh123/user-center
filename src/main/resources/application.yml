@@ -1,0 +1,42 @@
+spring:
+  profiles:
+    active: dev #指定开发环境
+  application:
+    name: user-name #项目名称
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/lzh?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&useSSL=false&serverTimezone=Asia/Shanghai
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: 123456
+  # session 失效时间
+  session:
+    timeout: 86400 #一天的时间失效
+    store-type: redis # session自动存入redis
+  #redis的配置
+  redis:
+    port: 6379
+    database: 0
+    host: 192.168.10.150
+    password: 123456
+    # Knife4j 的配置
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+#端口号
+server:
+  port: 8080
+  servlet:
+    session:
+      cookie:
+        domain:
+
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: false #默认值为true,关闭驼峰转下划线 如:userAccount -> user_account
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl #开启日志
+  #定义全局逻辑删除
+  global-config:
+    db-config:
+      logic-delete-field: isDelete #全局逻辑删除字段名
+      logic-delete-value: 1 #逻辑删除值(默认为1)
+      logic-not-delete-value: 0 #逻辑未删除值(默认为0)
